@@ -1,0 +1,42 @@
+# Рандом намбер гейм
+
+import random
+def rnumber():
+    a = 0
+    yield a + random.randint(1,100)
+
+def playornot():
+    print('Если хочешь выйти из игры, напиши "exit". Если хочешь поиграть ещё, напиши "go"')
+    while True:
+       c = input()
+       if c == 'exit':
+           break
+       elif c == "go":
+           game()
+       else:
+           print('Я таких слов не знаю :( Попробуй ещё раз')
+           continue
+  
+    
+def game():
+    b = next(rnumber())
+    print('Какое число загадано?')
+    while True:
+        a = int(input())
+        if a > b:
+            print('Загаданное число чуть меньше')
+            continue
+        elif a < b:
+            print('Загаданное число чуть больше')
+            continue
+        elif a == b:
+            print('Поздравляю, ответ верный!')
+            break
+        
+          
+    playornot()
+
+           
+game()
+
+
