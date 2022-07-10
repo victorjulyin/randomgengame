@@ -1,12 +1,17 @@
-# Рандом намбер гейм
-
 import random
+badlist = ['Wow, it is very cold.', 'Oh god, it will spent a lot of time.', 'I think, your intuition is a little bit broken.', 'I am sorry, but I am glad, that i did not bet a money on you.']
+normlist = ['It is ok, try again.', 'Ok, next try.', 'Yep.'] 
+greatlist = ['Very good.', 'Not bad.', 'Good for you.']
+closelist = ['Wow, really close.', 'Oh, you are lucky.', 'So close!']
+hotlist = ['Oh god, you will burn now!', 'Did you cheated?', 'How did you...']
+
 def rnumber():
     a = 0
     yield a + random.randint(1,100)
 
 def playornot():
-    print('Если хочешь выйти из игры, напиши "exit". Если хочешь поиграть ещё, напиши "go"')
+    print('If you do not want to play anymore: write "exit"')
+    print('If you want to play again: write "go"')
     while True:
        c = input()
        if c == 'exit':
@@ -14,29 +19,43 @@ def playornot():
        elif c == "go":
            game()
        else:
-           print('Я таких слов не знаю :( Попробуй ещё раз')
+           print('I did not understand you :(')
+           print('Try again, please')
            continue
   
-    
 def game():
     b = next(rnumber())
-    print('Какое число загадано?')
+    print('I have put number from 1 to 100 to the box')
+    print('What number is in the box?')
     while True:
         a = int(input())
-        if a > b:
-            print('Загаданное число чуть меньше')
-            continue
-        elif a < b:
-            print('Загаданное число чуть больше')
-            continue
+        if a >= b+50:
+            print(random.choice(badlist), 'Your number is too big.')
+        elif a <= b-50:
+            print(random.choice(badlist), 'Your number is too small.')
+        elif b+50 > a >= b+18:
+            print(random.choice(normlist), 'Make it smaller.')
+        elif b+18 > a >= b+6:
+            print(random.choice(greatlist), 'Yours is little bit bigger.')
+        elif b+6 > a > b+1:
+            print(random.choice(closelist), 'But too big.')
+        elif a >= b+1:
+            print(random.choice(hotlist), 'It is soooo hot.')
+        elif b-50 < a <= b-18:
+            print(random.choice(normlist), 'Make it bigger.')
+        elif b-18 < a <= b-6:
+            print(random.choice(greatlist), 'Yours is little bit smoller.')
+        elif b-6 < a < b-1:
+            print(random.choice(closelist), 'But too small.')
+        elif a <= b-1:
+            print(random.choice(hotlist), 'It is soooo hot.')
         elif a == b:
-            print('Поздравляю, ответ верный!')
+            print('Oh my god, congrats! That is correct!')
             break
-        
+        else:
+            print('I can not play with that :( Try again, please')
+        continue    
           
     playornot()
 
-           
 game()
-
-
